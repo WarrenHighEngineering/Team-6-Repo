@@ -1,0 +1,59 @@
+package org.firstinspires.ftc.teamcode;
+
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
+
+@TeleOp(name = "ClassBotV2_TestCode", group = "Linear OpMode")
+public class ClassBotV2_TestCode extends LinearOpMode {
+
+    @Override
+    public void runOpMode() throws InterruptedException {
+        // 1. Inicialización de Hardware (Variables y Objetos - Checkpoint 3)
+        // Mapea los nombres exactamente como los configures en tu REV Control Hub
+        DcMotor leftMotor = hardwareMap.get(DcMotor.class, "leftMotor");
+        DcMotor rightMotor = hardwareMap.get(DcMotor.class, "rightMotor");
+
+        // 2. Inversión de dirección básica
+        // Invertimos el motor izquierdo porque está montado en espejo al derecho
+        leftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+
+        telemetry.addData("Status", "Listo para iniciar - Checkpoint 3");
+        telemetry.update();
+
+        // Espera a que el instructor o tú presionen "Play" en la Driver Station
+        waitForStart();
+
+        // 3. Bucle de control (Control Flow & Loops - Checkpoint 3)
+        while (opModeIsActive()) {
+            
+            // Lectura de joysticks del Gamepad 1
+            // El eje Y suele venir invertido en los controles (-1 arriba, 1 abajo)
+            double drive = -gamepad1.left_stick_y;  // Adelante / Atrás
+            double turn  = gamepad1.right_stick_x;  // Giro
+
+            // Matemáticas básicas de prueba para tracción de 2 motores
+            double leftPower  = drive + turn;
+            double rightPower = drive - turn;
+
+            // 4. Condicionales para asegurar potencia segura (Conditionals - Checkpoint 3)
+            // Si la suma supera 1.0 o es menor a -1.0, se limita al máximo legal del motor
+            if (leftPower > 1.0) { leftPower = 1.0; }
+            else if (leftPower < -1.0) { leftPower = -1.0; }
+
+            if (rightPower > 1.0) { rightPower = 1.0; }
+            else if (rightPower < -1.0) { rightPower = -1.0; }
+
+            // Enviar la potencia calculada a los motores fisicos
+            leftMotor.setPower(leftPower);
+            rightMotor.setPower(rightPower);
+
+            // 5. Telemetría para cumplir con los resultados del Checkpoint 4
+            telemetry.addData("Prueba de Motores", "Ejecutando");
+            telemetry.addData("Potencia Izquierda", leftPower);
+            telemetry.addData("Potencia Derecha", rightPower);
+            telemetry.update();
+        }
+    }
+}
