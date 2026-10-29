@@ -24,10 +24,10 @@ public class MecanumDriveV2 extends LinearOpMode {
 
         // 2. Invertir la dirección de un lado (generalmente el izquierdo)
         // Debido a la orientación física de los motores en la transmisión V2
-        frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
-        backLeft.setDirection(DcMotorSimple.Direction.REVERSE);
-        frontRight.setDirection(DcMotorSimple.Direction.FORWARD);
-        backRight.setDirection(DcMotorSimple.Direction.FORWARD);
+        frontLeft.setDirection(DcMotorSimple.Direction.FORWARD);
+        backLeft.setDirection(DcMotorSimple.Direction.FORWARD);
+        frontRight.setDirection(DcMotorSimple.Direction.REVERSE);
+        backRight.setDirection(DcMotorSimple.Direction.REVERSE);
 
         telemetry.addData("Estado", "Inicializado - Listo para ejecutar");
         telemetry.update();
@@ -37,9 +37,9 @@ public class MecanumDriveV2 extends LinearOpMode {
         while (opModeIsActive()) {
             // 3. Capturar las entradas del control (Gamepad)
             // Se invierte Y porque en las palancas hacia arriba es un valor negativo
-            double y  = -gamepad1.left_stick_y;  // Avanzar / Retroceder
-            double x  =  gamepad1.left_stick_x * 1.1; // Desplazamiento lateral (strafe)
-            double rx =  gamepad1.right_stick_x; // Giro
+            double y  = -gamepad1.left_stick_y;            // Avanzar / Retroceder
+            double x  =  gamepad1.left_stick_x * 1.1;      // Desplazamiento lateral (strafe)
+            double rx =  gamepad1.right_stick_x;           // Giro
 
             // 4. Ecuaciones cinemáticas para chasis Mecanum
             double frontLeftPower  = y + x + rx;
@@ -49,9 +49,9 @@ public class MecanumDriveV2 extends LinearOpMode {
 
             // 5. Normalizar las potencias si exceden el rango [-1.0, 1.0]
             double maxPower = Math.max(
-                Math.abs(frontLeftPower),
-                Math.max(Math.abs(backLeftPower),
-                Math.max(Math.abs(frontRightPower), Math.abs(backRightPower)))
+                    Math.abs(frontLeftPower),
+                    Math.max(Math.abs(backLeftPower),
+                            Math.max(Math.abs(frontRightPower), Math.abs(backRightPower)))
             );
 
             if (maxPower > 1.0) {

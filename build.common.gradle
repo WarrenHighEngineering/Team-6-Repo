@@ -19,12 +19,12 @@ import java.util.regex.Pattern
 
 android {
 
-    compileSdkVersion 34
+    compileSdkVersion 30
 
     signingConfigs {
         release {
             def apkStoreFile = System.getenv("APK_SIGNING_STORE_FILE")
-S            if (apkStoreFile != null) {
+            if (apkStoreFile != null) {
                 keyAlias System.getenv("APK_SIGNING_KEY_ALIAS")
                 keyPassword System.getenv("APK_SIGNING_KEY_PASSWORD")
                 storeFile file(System.getenv("APK_SIGNING_STORE_FILE"))
@@ -50,7 +50,7 @@ S            if (apkStoreFile != null) {
         applicationId 'com.qualcomm.ftcrobotcontroller'
         minSdkVersion 24
         //noinspection ExpiredTargetSdkVersion
-        targetSdkVersion 34
+        targetSdkVersion 28
 
         /**
          * We keep the versionCode and versionName of robot controller applications in sync with

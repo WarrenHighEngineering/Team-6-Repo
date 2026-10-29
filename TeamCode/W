@@ -18,7 +18,7 @@ public class MecanumDriveHDHex extends LinearOpMode {
     public void runOpMode() {
 
         // Hardware map initialization
-        frontLeft  = hardwareMap.get(DcMotor.class, "front_left");
+        frontLeft  = hardareMap.get(DcMotor.class, "front_left");
         backLeft   = hardwareMap.get(DcMotor.class, "back_left");
         frontRight = hardwareMap.get(DcMotor.class, "front_right");
         backRight  = hardwareMap.get(DcMotor.class, "back_right");

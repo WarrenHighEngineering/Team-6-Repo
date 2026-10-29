@@ -74,7 +74,7 @@ See https://developer.android.com/guide/topics/ui/settings.html
         android:summary="@string/summaryAdvancedRCSettings"
         android:key="@string/pref_launch_advanced_rc_settings">
         <intent
-            android:targetPackage="@string/packageName"
+            android:targetPackage="org.firstinspires.ftc"
             android:targetClass="com.qualcomm.ftccommon.FtcAdvancedRCSettingsActivity"
             />
     </PreferenceScreen>
@@ -84,7 +84,7 @@ See https://developer.android.com/guide/topics/ui/settings.html
         android:summary="@string/prefedit_view_logs_summary"
         android:key="@string/pref_launch_viewlogs">
       <intent
-        android:targetPackage="@string/packageName"
+        android:targetPackage="org.firstinspires.ftc"
         android:targetClass="com.qualcomm.ftccommon.ViewLogsActivity" />
     </PreferenceScreen>
 
