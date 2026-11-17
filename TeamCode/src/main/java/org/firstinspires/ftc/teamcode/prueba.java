@@ -5,8 +5,8 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
-@TeleOp(name = "Mecanum Drive HD Hex V2", group = "Linear OpMode")
-public class MecanumDriveV2 extends LinearOpMode {
+@TeleOp(name = "Prueba Mecanum Drive", group = "Linear OpMode")
+public class prueba extends LinearOpMode {
 
     // Definir los 4 motores HD Hex
     private DcMotor frontLeft = null;
